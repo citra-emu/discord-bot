@@ -1,8 +1,8 @@
 var discord = require('discord.js');
 var fs = require('fs');
 var path = require('path');
-var config = require('config');
 
+var config = require('./config.json');
 var logger = require('./logging.js');
 var app = require('./app.js');
 var data = require('./data.js');

@@ -4,7 +4,7 @@
   "description": "Citra bot for Discord",
   "author": "chris062689 <chris062689@gmail.com>",
   "scripts": {
-    "start": "node server.js"
+    "start": "node start.js"
   },
   "preferGlobal": true,
   "private": true,
@@ -17,6 +17,7 @@
     "ip": "^1.1.5",
     "logdna": "^1.2.3",
     "request": "^2.79.0",
-    "winston": "^2.3.0"
+    "winston": "^2.3.0",
+    "forever-monitor": "^1.5.2"
   }
 }

@@ -16,5 +16,6 @@
     "download": { "reply": "Please only download from the official *Citra* website, as downloading from other sources is not supported here. <https://citra-emu.org/download/>"},
     "legal": { "reply": "*Citra* is legal, we don't support illegal activities. Dumping your purchased games and system files from your 3DS is legal. Downloading them is not."},
     "building": { "reply": "Please refer to our building guides.\nWindows: <https://citra-emu.org/wiki/Building-for-Windows> \nmacOS: <https://citra-emu.org/wiki/Building-for-macOS> \nLinux: <https://citra-emu.org/wiki/Building-for-Linux>"}
-  }
+  },
+  "production": true
 }
