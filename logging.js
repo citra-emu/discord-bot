@@ -1,8 +1,9 @@
-var config = require('config');
 var winston = require('winston');
 var logdna = require('logdna');
 var ip = require('ip');
 var os = require("os");
+
+var config = require('./config.json');
 
 winston.emitErrs = true;
 var logger = new winston.Logger({
@@ -19,7 +20,7 @@ var logger = new winston.Logger({
     exitOnError: false
 });
 
-if (process.env.NODE_ENV == 'production') {
+if (config.production == true) {
     // Setup logging for LogDNA cloud logging.
     logger.add(winston.transports.Logdna, {
         level: 'info',
