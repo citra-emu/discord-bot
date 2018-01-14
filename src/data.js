@@ -22,6 +22,17 @@ function readBans () {
   });
 }
 
+function readCustomResponses()
+{
+  // Load the responses file into the responses variable.
+  fs.readFile('data/responses.json', 'utf8', function (err, data) {
+    if (err && err.code === 'ENOENT') { return; }
+    if (err) { logger.error(err); }
+    state.responses = JSON.parse(data);
+    logger.debug('Loaded responses file.');
+  });
+}
+
 function flushWarnings () {
   var warningsJson = JSON.stringify(state.warnings, null, 4);
   if (!fs.existsSync('./data/')) fs.mkdirSync('data');
@@ -38,4 +49,4 @@ function flushBans () {
   });
 }
 
-module.exports = { readWarnings: readWarnings, readBans: readBans, flushWarnings: flushWarnings, flushBans: flushBans };
+module.exports = { readWarnings: readWarnings, readBans: readBans, readCustomResponses: readCustomResponses, flushWarnings: flushWarnings, flushBans: flushBans };

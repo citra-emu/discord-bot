@@ -3,6 +3,7 @@ var State = function () {
   this.guild = null;
   this.logChannel = null;
   this.warnings = [];
+  this.responses = null;
   this.bans = [];
   this.stats = {
     joins: 0,

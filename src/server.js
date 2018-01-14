@@ -10,7 +10,7 @@ const logger = require('./logging.js');
 const state = require('./state.js');
 const data = require('./data.js');
 
-var responses = require('./responses.json');
+state.responses = require('./responses.json');
 
 var cachedModules = [];
 var cachedTriggers = [];
@@ -57,11 +57,11 @@ schedule.scheduleJob({ hour: 3, minute: 30 }, function () {
 client.on('message', message => {
   if (message.author.bot && message.content.startsWith('.ban') === false) { return; }
 
-  if (message.guild == null && responses.pmReply) {
+  if (message.guild == null && state.responses.pmReply) {
     // We want to log PM attempts.
     logger.info(`${message.author.username} ${message.author} [PM]: ${message.content}`);
     state.logChannel.sendMessage(`${message.author} [PM]: ${message.content}`);
-    message.reply(responses.pmReply);
+    message.reply(state.responses.pmReply);
     return;
   }
 
@@ -75,7 +75,7 @@ client.on('message', message => {
     let cachedModule = cachedModules[`${cmd}.js`];
     let cachedModuleType = 'Command';
     // Check by the quotes in the configuration.
-    if (cachedModule == null) { cachedModule = responses.quotes[cmd]; cachedModuleType = 'Quote'; }
+    if (cachedModule == null) { cachedModule = state.responses.quotes[cmd]; cachedModuleType = 'Quote'; }
 
     if (cachedModule) {
       // Check access permissions.
@@ -156,6 +156,12 @@ fs.readdirSync('./src/triggers/').forEach(function (file) {
 
 data.readWarnings();
 data.readBans();
+
+// Load custom responses
+if (process.env.DATA_CUSTOM_RESPONSES)
+{
+    data.readCustomResponses();
+}
 
 client.login(process.env.DISCORD_LOGIN_TOKEN);
 logger.info('Startup completed. Established connection to Discord.');
