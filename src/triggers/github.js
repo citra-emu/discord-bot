@@ -10,6 +10,8 @@ exports.execute = function (message) {
   let matcher = new RegExp(regex);
   let match = matcher.exec(message.content);
   let matched = [];
+  let threshold = process.env.GITHUB_OLD_THRESHOLD || 2000;
+  let repo = process.env.GITHUB_REPOSITORY || "citra-emu/citra";
 
   while (match != null) {
     if (matched.indexOf(match[1]) === -1) {
@@ -23,12 +25,12 @@ exports.execute = function (message) {
     // This usually happens when someone messes up pinging another person or
     // in general conversation.
     // ex: You're #1!
-    if (match[1] <= 2000) { return; }
-    
+    if (match[1] < threshold) { return; }
+
     // Map domain path to type
     let map = {'pull': 'Pull Request', 'issues': 'Issue'};
 
-    let url = `https://github.com/citra-emu/citra/pull/${match[1]}`;
+    let url = `https://github.com/${repo}/pull/${match[1]}`;
     request(url, function (error, response, body) {
       if (!error && response.statusCode === 200) {
         
