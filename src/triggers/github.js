@@ -1,6 +1,6 @@
 const request = require('request');
 
-const regex = /[^\<\\]\#(\d+)/ig;
+const regex = /([a-zA-Z]+)?\#(\d+)/ig;
 
 exports.trigger = function (message) {
   return new RegExp(regex).test(message.content);
@@ -19,16 +19,25 @@ exports.execute = function (message) {
       continue;
     }
 
-    // We do not want to automatically match old issues / PRs.
-    // This usually happens when someone messes up pinging another person or
-    // in general conversation.
-    // ex: You're #1!
-    if (match[1] <= 2000) { return; }
+    let baseurl;
+
+    // Check which repo is wanted
+    switch(match[1])
+    {
+      case 'yuzu':
+        baseurl = 'https://github.com/yuzu-emu/yuzu/pull/';
+        break;
+      case 'citra':
+        baseurl = 'https://github.com/citra-emu/citra/pull/';
+        break;
+      default:
+        return;
+    }
     
     // Map domain path to type
     let map = {'pull': 'Pull Request', 'issues': 'Issue'};
 
-    let url = `https://github.com/citra-emu/citra/pull/${match[1]}`;
+    let url = `${baseurl}${match[2]}`;
     request(url, function (error, response, body) {
       if (!error && response.statusCode === 200) {
         
