@@ -1,14 +1,8 @@
 exports.command = function (message) {
   var role = '417319307844780034';
-  message.mentions.users.map((user) => {
-    let member = message.guild.member(user);
-    let alreadyJoined = member.roles.has(role);
+  let alreadyJoined = message.member.roles.has(role);
 
-    if (alreadyJoined) {
-      member.removeRole(role);
-      message.channel.sendMessage(`${user} was revoked of authorization.`);
-    } else {
-      member.addRole(role);
-    }
-  });
+  if (!alreadyJoined) {
+    message.member.addRole(role);
+  }
 }
