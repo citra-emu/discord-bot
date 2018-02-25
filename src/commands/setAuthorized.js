@@ -1,4 +1,3 @@
-exports.roles = ['Admins', 'Moderators', 'CitraBot'];
 exports.command = function (message) {
   var role = '417319307844780034';
   message.mentions.users.map((user) => {
