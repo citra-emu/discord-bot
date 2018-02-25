@@ -10,7 +10,6 @@ exports.command = function (message) {
       message.channel.sendMessage(`${user} was revoked of authorization.`);
     } else {
       member.addRole(role);
-      message.channel.sendMessage(`${user} is now authorized.`);
     }
   });
 }
