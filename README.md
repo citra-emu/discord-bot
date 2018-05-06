@@ -70,6 +70,6 @@ Now you can get your bot's token, by using the "click to reveal button" in the a
 ![Token](http://i.imgur.com/QwCmJJM.png)
 There's your token! Now its time to invite your bot to your server. Don't worry about your bot being started for this next step. Change the `client_id` in the URL to your Client ID under App Details, then go to this url ```https://discordapp.com/oauth2/authorize?&client_id=YOUR_CLIENT_ID_HERE&scope=bot&permissions=0```
 ![Authorize Bot](http://i.imgur.com/Ggwy0BP.png)
-Now select your sever, then click authorize.
+Now select your server, then click authorize.
 ![Authorized](http://i.imgur.com/4cqNcs1.png)
 That's it! Now you can start your bot.
