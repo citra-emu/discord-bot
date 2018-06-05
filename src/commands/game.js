@@ -37,7 +37,7 @@ exports.command = function (message) {
         exports.command(message);
       } else {
         logger.error("Unable to download latest games list!");
-        message.channel.send("Game comparability feed temporally unavailable - sorry!")
+        message.channel.send("Game compatibility feed temporally unavailable - sorry!")
       }
     });
 
