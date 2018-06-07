@@ -1,4 +1,4 @@
-const request = require('request');
+const request = require('request-promise-native');
 const discord = require('discord.js');
 const stringSimilarity = require('string-similarity');
 
@@ -20,28 +20,40 @@ const compatStrings = {
   99: { "key": "99", "name": "Not Tested", "color": "black", "description": "The game has not yet been tested." }
 };
 
-exports.command = function (message) {
+async function updateDatabase() {
+  let body;
+  try {
+    body = await request(targetServer);
+  } catch (e) {
+    logger.error("Unable to download latest games list!");
+    throw e;
+  }
+
+  state.gameDB = JSON.parse(body);
+  state.lastGameDBUpdate = Date.now();
+  logger.info(`Updated games list (${state.gameDB.length} games)`);
+
+  state.gameDBPromise = null;
+}
+
+exports.command = async function (message) {
   if (Date.now() - state.lastGameDBUpdate > refreshTime) {
     // Update remote list of games locally.
     const waitMessage = message.channel.send("This will take a second...");
 
-    request(targetServer, function (error, response, body) {
+    if (state.gameDBPromise == null) {
+      state.gameDBPromise = updateDatabase(message);
+    }
+
+    try {
+      await state.gameDBPromise;
+    } catch (e) {
+      message.channel.send("Game compatibility feed temporarily unavailable - sorry!");
+      throw e;
+    } finally {
       // We don't need this message anymore
       waitMessage.then(waitMessageResult => waitMessageResult.delete());
-
-      if (!error && response.statusCode === 200) {
-        state.gameDB = JSON.parse(body);
-        state.lastGameDBUpdate = Date.now();
-        logger.info(`Updated games list (${state.gameDB.length} games)`);
-
-        exports.command(message);
-      } else {
-        logger.error("Unable to download latest games list!");
-        message.channel.send("Game compatibility feed temporarily unavailable - sorry!")
-      }
-    });
-
-    return;
+    }
   }
 
   const game = message.content.substr(message.content.indexOf(' ') + 1);

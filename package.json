@@ -15,6 +15,7 @@
     "logdna": "^1.2.3",
     "node-schedule": "^1.2.3",
     "request": "^2.79.0",
+    "request-promise-native": "^1.0.5",
     "string-similarity": "^1.2.0",
     "winston": "^2.3.0"
   },

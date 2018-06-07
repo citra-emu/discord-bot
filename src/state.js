@@ -13,6 +13,7 @@ var State = function () {
   };
   this.lastGameDBUpdate = 0;
   this.gameDB = [];
+  this.gameDBPromise = null;
 };
 
 module.exports = new State();
