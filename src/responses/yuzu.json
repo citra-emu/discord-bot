@@ -14,7 +14,9 @@
       "building": { "reply": "Please refer to our building guides.\nWindows: <https://yuzu-emu.org/wiki/building-for-windows> \nmacOS: <https://yuzu-emu.org/wiki/building-for-macos> \nLinux: <https://yuzu-emu.org/wiki/building-for-linux>"},
       "unusedforum": { "reply": "This question might be more suitable for the *Citra* forum. <https://community.citra-emu.org/>"},
       "contributing": { "reply": "Contributing to the project is the best way to help the project move forward. If you are a developer, please refer to: \nSwitch reference guides: <https://github.com/yuzu-emu/yuzu/wiki/Switch-Hardware-and-Software> \nSwitch homebrew applications for testing: <https://github.com/yuzu-emu/yuzu/wiki/Switch-Homebrew> \nWiki, dedicated to Switch research: <http://switchbrew.org> \nYuzu contributing tips: <https://github.com/yuzu-emu/yuzu/blob/master/CONTRIBUTING.md>"},
-      "canary": { "reply": "The nightly build of Yuzu contains already reviewed and tested features. If you require support with the installation or use of Yuzu, or you want to report bugs you should use this version.\nThe Canary build of Yuzu is the same as our nightly builds, with additional features that are still waiting on review before making it into the official Yuzu builds. We will not provide support for issues found only in this version. If you believe you�ve found a bug, please retest on our nightly builds. Both versions are still in development, so expect crashes and bugs."}
+      "canary": { "reply": "The nightly build of Yuzu contains already reviewed and tested features. If you require support with the installation or use of Yuzu, or you want to report bugs you should use this version.\nThe Canary build of Yuzu is the same as our nightly builds, with additional features that are still waiting on review before making it into the official Yuzu builds. We will not provide support for issues found only in this version. If you believe you�ve found a bug, please retest on our nightly builds. Both versions are still in development, so expect crashes and bugs."},
+      "lenny": { "reply": "( ͡° ͜ʖ ͡°)"},
+      "( ͡° ͜ʖ ͡°)": { "reply": "lenny"}
     }
   }
   
