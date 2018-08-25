@@ -17,8 +17,7 @@
       "canary": { "reply": "The nightly build of Yuzu contains already reviewed and tested features. If you require support with the installation or use of Yuzu, or you want to report bugs you should use this version.\nThe Canary build of Yuzu is the same as our nightly builds, with additional features that are still waiting on review before making it into the official Yuzu builds. We will not provide support for issues found only in this version. If you believe you�ve found a bug, please retest on our nightly builds. Both versions are still in development, so expect crashes and bugs."},
       "lenny": { "reply": "( ͡° ͜ʖ ͡°)"},
       "( ͡° ͜ʖ ͡°)": { "reply": "lenny"},
-      "log": { "reply": "This forum topic tells you how to __get the log file__: <https://community.citra-emu.org/t/how-to-upload-the-log-file/296>"},
-      "keys": { "reply": "Please refer to our __key dumping guide__. <https://github.com/yuzu-emu/yuzu/wiki/Dumping-Decryption-Keys-from-a-Switch-Console>"}
+      "log": { "reply": "This forum topic tells you how to __get the log file__: <https://community.citra-emu.org/t/how-to-upload-the-log-file/296>"}
     }
   }
   
