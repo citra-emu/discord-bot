@@ -19,6 +19,7 @@
       "( ͡° ͜ʖ ͡°)": { "reply": "lenny"},
       "format": { "reply": "A full description of game formats the Yuzu supports and when to use them can be found on our wiki. <https://yuzu-emu.org/wiki/overview-of-switch-game-formats/>"},
       "keys": { "reply": "Most games require encryption keys to boot. You can dump them from your switch by following this guide on our wiki. <https://yuzu-emu.org/wiki/dumping-decryption-keys-from-a-switch-console/>"},
+      "updates": { "reply": "Installing and using game updates are a seperate process from the base game. Check out our updates tutorial on our wiki. <https://yuzu-emu.org/wiki/how-to-install-and-use-game-updates/>"},
       "log": { "reply": "This forum topic tells you how to __get the log file__: <https://community.citra-emu.org/t/how-to-upload-the-log-file/296>"}
     }
   }
