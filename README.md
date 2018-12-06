@@ -58,7 +58,7 @@ Copy App Bot User token to `"clientLoginToken": ""`
 GNU General Public License v2.0
 
 # Creating a Bot User.
-First you need to go to [discord developers](https://discordapp.com/developers/applications/me) and click "New Application"
+First you need to go to [Discord developers](https://discordapp.com/developers/applications/me) and click "New Application"
 ![Application Screen](http://i.imgur.com/FvgfY2Z.png)
 Now give your bot a name and a picture, a description isn't necessary.
 ![New Application Screen](http://i.imgur.com/MOS7yvH.png)
