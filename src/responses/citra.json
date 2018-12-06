@@ -10,7 +10,7 @@
       "dump-system": { "reply": "Please refer to our __system dumping guide__. <https://citra-emu.org/wiki/dumping-system-archives-and-the-shared-fonts-from-a-3ds-console/>"},
       "compat": { "reply": "Click here to view our game compatibility list: <https://citra-emu.org/game/>. ***A Reminder***: Compatibility ratings are user submitted data and may not accurately reflect the game's playability. Your experience may or may not be the same due to differences in hardware or software environments."},
       "alpha": { "reply": "*Citra* is currently in early stages of development. Some games usually run less than full-speed even on the best computers. Expect bugs and glitches to appear in most games. Many features found in more mature emulators are still in the works. For any major updates, please visit <https://citra-emu.org/>"},
-      "updates": { "reply": "You can check our latest updates on *Github*. <https://github.com/citra-emu/citra/pulse>"},
+      "updates": { "reply": "You can check our latest updates on *GitHub*. <https://github.com/citra-emu/citra/pulse>"},
       "download": { "reply": "Please only download from the official *Citra* website, as downloading from other sources is not supported here. <https://citra-emu.org/download/>"},
       "legal": { "reply": "*Citra* is legal, we don't support illegal activities. Dumping your purchased games and system files from your 3DS is legal. Downloading them is not."},
       "building": { "reply": "Please refer to our building guides.\nWindows: <https://citra-emu.org/wiki/building-for-windows> \nmacOS: <https://citra-emu.org/wiki/building-for-macos> \nLinux: <https://citra-emu.org/wiki/building-for-linux>"},
