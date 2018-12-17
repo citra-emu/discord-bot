@@ -21,7 +21,8 @@
       "keys": { "reply": "Most games require encryption keys to boot. You can dump them from your Switch by following this guide on our wiki. <https://yuzu-emu.org/wiki/dumping-decryption-keys-from-a-switch-console/>"},
       "game-updates": { "reply": "Installing and using game updates are a seperate process from the base game. Check out our updates tutorial on our wiki. <https://yuzu-emu.org/wiki/how-to-install-and-use-game-updates/>"},
       "log": { "reply": "This forum topic tells you how to __get the log file__: <https://community.citra-emu.org/t/how-to-upload-the-log-file/296>"},
-      "pikachu": {"reply":"<https://cdn.discordapp.com/attachments/512678820092968971/516372335826042901/yote.png>"}
+      "pikachu": {"reply": "<https://cdn.discordapp.com/attachments/512678820092968971/516372335826042901/yote.png>"},
+	  "plg": {"reply": "*yuzu* is currently lacking a complete LDG implementation, and thus fonts and other elements that require this instruction do not currently render correctly.\nThe timeframe for a fix is currently unknown."}
     }
   }
   
