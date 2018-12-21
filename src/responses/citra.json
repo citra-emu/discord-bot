@@ -19,7 +19,7 @@
       "forum": { "reply": "This question might be more suitable for the *Citra* forum. <https://community.citra-emu.org/>"},
       "log": { "reply": "This forum topic tells you how to __get the log file__: <https://community.citra-emu.org/t/how-to-upload-the-log-file/296>"},
       "canary": { "reply": "The nightly build of Citra contains already reviewed and tested features. If you require support with the installation or use of Citra, or you want to report bugs you should use this version.\nThe Canary build of Citra is the same as our nightly builds, with additional features that are still waiting on review before making it into the official Citra builds. We will not provide support for issues found only in this version. If you believe you’ve found a bug, please retest on our nightly builds. Both versions are still in development, so expect crashes and bugs."},
-      "cheats": { "reply": "Looking to add cheats to citra? Drop a .txt file with the titleid of the game you're playing into the %appdata%/citra/cheats folder. /n Cheats are stored in the gateway format, a sample collection of cheats are located here at https://github.com/JourneyOver/CTRPF-AR-CHEAT-CODES/tree/master/Cheats "},
+      "cheats": { "reply": "Looking to add cheats to citra? Drop a .txt file with the titleid of the game you're playing into the %appdata%/citra/cheats folder. /n Cheats are stored in the gateway format, a sample collection of cheats are located here at <https://github.com/JourneyOver/CTRPF-AR-CHEAT-CODES/tree/master/Cheats/> "},
       "lenny": { "reply": "( ͡° ͜ʖ ͡°)"},
       "( ͡° ͜ʖ ͡°)": { "reply": "lenny"}
     }
