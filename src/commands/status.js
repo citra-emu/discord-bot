@@ -7,7 +7,7 @@ exports.command = function (message) {
 
     let repo = process.env.GITHUB_REPOSITORY || "citra-emu/citra";
     let url = `https://api.github.com/repos/${repo}/pulls/${pr}`;
-    
+
     request({ url: url, headers: { 'User-Agent': 'Citra-Emu/CitraBot (Node.js)'}}, function (error, response, body) {
     if (!error) {
       var pr = JSON.parse(body);
@@ -15,7 +15,7 @@ exports.command = function (message) {
       {
         var statuses = JSON.parse(body);
 
-        if (statuses.length == 0) return;
+        if (statuses.length === 0) return;
 
 	// Travis CI will give you multiple, identical target URLs so we might as well just check the first one...
         var status = statuses[0];
