@@ -16,6 +16,8 @@ var cachedModules = [];
 var cachedTriggers = [];
 var client = new discord.Client();
 
+let mediaUsers = new Map();
+
 logger.info('Application startup. Configuring environment.');
 
 process.on('unhandledRejection', (error, promise) => {
@@ -93,6 +95,21 @@ client.on('message', message => {
   }
 
   logger.verbose(`${message.author.username} ${message.author} [Channel: ${message.channel.name} ${message.channel}]: ${message.content}`);
+
+  if (message.channel.id === process.env.DISCORD_MEDIA_CHANNEL && !message.author.bot) {
+    const AllowedMediaRoles = ['Administrators', 'Moderators', 'Team', 'VIP'];
+    if (!findArray(message.member.roles.map(function (x) { return x.name; }), AllowedMediaRoles)) {
+      const urlRegex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/gi);
+      if (message.attachments.size > 0 || message.content.match(urlRegex)) {
+        mediaUsers.set(message.author.id, true);
+      } else if (mediaUsers.get(message.author.id)) {
+        mediaUsers.set(message.author.id, false);
+      } else {
+        message.delete();
+        mediaUsers.set(message.author.id, false);
+      }
+    }
+  }
 
   // Check if the channel is #rules, if so we want to follow a different logic flow.
   if (message.channel.id === process.env.DISCORD_RULES_CHANNEL) {
