@@ -42,3 +42,10 @@ jspm_packages
 # Configuration
 config/production.json
 config/development.json
+
+# Project/editor files
+*.swp
+.idea/
+.vs/
+.vscode/
+CMakeLists.txt.user*
