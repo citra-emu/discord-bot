@@ -2,7 +2,7 @@ const fs = require('fs');
 const state = require('./state.js');
 const logger = require('./logging.js');
 
-function readWarnings() {
+function readWarnings () {
   // Load the warnings file into the application state.
   var readFilePath = '/data/discordWarnings.json';
   fs.readFile(readFilePath, 'utf8', function (err, data) {
@@ -16,7 +16,7 @@ function readWarnings() {
   });
 }
 
-function readBans() {
+function readBans () {
   // Load the ban file into the application state.
   var readFilePath = '/data/discordBans.json';
   fs.readFile(readFilePath, 'utf8', function (err, data) {
@@ -30,20 +30,20 @@ function readBans() {
   });
 }
 
-function readCustomResponses() {
+function readCustomResponses () {
   // Load the responses file into the responses variable.
-  state.responses  = require(`./responses/${process.env.TENANT}.json`);
+  state.responses = require(`./responses/${process.env.TENANT}.json`);
   logger.debug(`Loaded responses file for ${process.env.TENANT} from external source.`);
 }
 
-function flushWarnings() {
+function flushWarnings () {
   var warningsJson = JSON.stringify(state.warnings, null, 4);
   fs.writeFile('/data/discordWarnings.json', warningsJson, 'utf8', function (err) {
     if (err) { throw err; }
   });
 }
 
-function flushBans() {
+function flushBans () {
   var bansJson = JSON.stringify(state.bans, null, 4);
   fs.writeFile('/data/discordBans.json', bansJson, 'utf8', function (err) {
     if (err) { throw err; }

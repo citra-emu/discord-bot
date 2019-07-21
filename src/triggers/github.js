@@ -1,6 +1,6 @@
 const request = require('request');
 
-const regex = /[^\<\\]\#(\d+)/ig;
+const regex = /[^<\\]#(\d+)/ig;
 
 exports.trigger = function (message) {
   return new RegExp(regex).test(message.content);
@@ -33,10 +33,9 @@ exports.execute = function (message) {
     let url = `https://github.com/${repo}/pull/${match[1]}`;
     request(url, function (error, response, body) {
       if (!error && response.statusCode === 200) {
-        
         // Set path to type of comment (issues/pull)
         let path = response.request.uri.pathname.split('/')[3];
-        
+
         message.channel.send(`Github ${map[path]}: ${url}`);
       }
     });

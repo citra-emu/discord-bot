@@ -19,7 +19,7 @@ var client = new discord.Client();
 logger.info('Application startup. Configuring environment.');
 
 process.on('unhandledRejection', (error, promise) => {
-	logger.error(`Unhandled promise rejection: ${error.message}.`, { meta: error });
+  logger.error(`Unhandled promise rejection: ${error.message}.`, { meta: error });
 });
 
 process.on('uncaughtException', error => {
@@ -27,7 +27,7 @@ process.on('uncaughtException', error => {
   process.exit(-1);
 });
 
-function findArray(haystack, arr) {
+function findArray (haystack, arr) {
   return arr.some(function (v) {
     return haystack.indexOf(v) >= 0;
   });
@@ -42,22 +42,22 @@ client.on('ready', () => {
 });
 
 client.on('error', (x) => {
-	logger.error(x)
-	logger.error('Restarting process.')
-	process.exit(1)
-})
+  logger.error(x);
+  logger.error('Restarting process.');
+  process.exit(1);
+});
 client.on('warn', (x) => {
-	logger.warn(x)
-})
+  logger.warn(x);
+});
 
-client.on('debug', (x) => null)
+client.on('debug', (x) => null);
 
 client.on('disconnect', () => {
-	logger.warn('Disconnected from Discord server.');
-})
+  logger.warn('Disconnected from Discord server.');
+});
 client.on('reconnecting', () => {
-	logger.warn('Reconnecting...');
-})
+  logger.warn('Reconnecting...');
+});
 
 client.on('guildMemberAdd', (member) => {
   member.addRole(process.env.DISCORD_RULES_ROLE);

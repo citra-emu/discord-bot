@@ -1,6 +1,6 @@
 exports.roles = ['Admins', 'Moderators', 'CitraBot'];
 exports.command = function (message) {
-  var role = process.env.DISCORD_DEVELOPER_ROLE
+  var role = process.env.DISCORD_DEVELOPER_ROLE;
   message.mentions.users.map((user) => {
     let member = message.guild.member(user);
     let alreadyJoined = member.roles.has(role);
@@ -13,4 +13,4 @@ exports.command = function (message) {
       message.channel.send(`${user} has been granted speech in the #development channel.`);
     }
   });
-}
+};

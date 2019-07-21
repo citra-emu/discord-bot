@@ -20,7 +20,7 @@ const compatStrings = {
   99: { "key": "99", "name": "Not Tested", "color": "black", "description": "The game has not yet been tested." }
 };
 
-async function updateDatabase() {
+async function updateDatabase () {
   let body;
   try {
     body = await request(targetServer);
@@ -34,7 +34,7 @@ async function updateDatabase() {
       directory: x.directory,
       title: x.title,
       compatibility: x.compatibility
-    }
+    };
   });
 
   state.lastGameDBUpdate = Date.now();
