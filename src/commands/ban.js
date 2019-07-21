@@ -6,7 +6,7 @@ const UserBan = require('../models/UserBan.js');
 exports.roles = ['Admins', 'Moderators', 'CitraBot'];
 exports.command = function (message) {
   message.mentions.users.map((user) => {
-    var count = state.warnings.filter(x => x.id === user.id && !x.cleared).length || 0;
+    const count = state.warnings.filter(x => x.id === user.id && !x.cleared).length || 0;
 
     logger.info(`${message.author.toString()} has banned ${user.toString()} ${user} ${user.username}.`);
     state.logChannel.send(`${message.author} has banned ${user} ${user.username} [${count}].`);

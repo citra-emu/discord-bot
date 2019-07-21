@@ -1,5 +1,5 @@
 /* Application State */
-var State = function () {
+const State = function () {
   this.guild = null;
   this.logChannel = null;
   this.warnings = [];

@@ -9,14 +9,14 @@ exports.command = function (message) {
 
   request({ url: url, headers: { 'User-Agent': 'Citra-Emu/CitraBot (Node.js)' } }, function (error, response, body) {
     if (!error) {
-      var pr = JSON.parse(body);
+      const pr = JSON.parse(body);
       request({ url: pr.statuses_url, headers: { 'User-Agent': 'Citra-Emu/CitraBot (Node.js)' } }, function (error, response, body) {
-        var statuses = JSON.parse(body);
+        const statuses = JSON.parse(body);
 
         if (statuses.length === 0) return;
 
         // Travis CI will give you multiple, identical target URLs so we might as well just check the first one...
-        var status = statuses[0];
+        const status = statuses[0];
         status.target_url = status.target_url.substr(0, status.target_url.indexOf('?'));
         message.channel.sendMessage(`${status.context}: ${status.target_url}: **${status.state}**`);
       });

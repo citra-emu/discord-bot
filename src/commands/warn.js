@@ -6,7 +6,7 @@ const UserWarning = require('../models/UserWarning.js');
 exports.roles = ['Admins', 'Moderators'];
 exports.command = function (message) {
   message.mentions.users.map((user) => {
-    var count = state.warnings.filter(x => x.id === user.id && !x.cleared).length || 0;
+    const count = state.warnings.filter(x => x.id === user.id && !x.cleared).length || 0;
     message.channel.send(`${user} You have been warned. Additional infractions may result in a ban.`);
 
     logger.info(`${message.author.username} ${message.author} has warned ${user.username} ${user} [${count} + 1].`);

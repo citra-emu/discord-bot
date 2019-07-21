@@ -4,7 +4,7 @@ const logger = require('./logging.js');
 
 function readWarnings () {
   // Load the warnings file into the application state.
-  var readFilePath = '/data/discordWarnings.json';
+  const readFilePath = '/data/discordWarnings.json';
   fs.readFile(readFilePath, 'utf8', function (err, data) {
     if (err) { throw err; }
     if (data) {
@@ -18,7 +18,7 @@ function readWarnings () {
 
 function readBans () {
   // Load the ban file into the application state.
-  var readFilePath = '/data/discordBans.json';
+  const readFilePath = '/data/discordBans.json';
   fs.readFile(readFilePath, 'utf8', function (err, data) {
     if (err) { throw err; }
     if (data) {
@@ -37,14 +37,14 @@ function readCustomResponses () {
 }
 
 function flushWarnings () {
-  var warningsJson = JSON.stringify(state.warnings, null, 4);
+  const warningsJson = JSON.stringify(state.warnings, null, 4);
   fs.writeFile('/data/discordWarnings.json', warningsJson, 'utf8', function (err) {
     if (err) { throw err; }
   });
 }
 
 function flushBans () {
-  var bansJson = JSON.stringify(state.bans, null, 4);
+  const bansJson = JSON.stringify(state.bans, null, 4);
   fs.writeFile('/data/discordBans.json', bansJson, 'utf8', function (err) {
     if (err) { throw err; }
   });

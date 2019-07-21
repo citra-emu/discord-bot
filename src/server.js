@@ -12,9 +12,9 @@ const data = require('./data.js');
 
 state.responses = require('./responses.json');
 
-var cachedModules = [];
-var cachedTriggers = [];
-var client = new discord.Client();
+let cachedModules = [];
+let cachedTriggers = [];
+const client = new discord.Client();
 
 logger.info('Application startup. Configuring environment.');
 

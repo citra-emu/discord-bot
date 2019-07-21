@@ -4,7 +4,7 @@ const os = require('os');
 
 winston.emitErrs = true;
 
-var logger = new winston.Logger({
+const logger = new winston.Logger({
   level: 'debug',
   transports: [
     new (winston.transports.Console)()
