@@ -19,10 +19,10 @@
       "( ͡° ͜ʖ ͡°)": { "reply": "lenny"},
       "format": { "reply": "A full description of game formats the yuzu supports and when to use them can be found on our wiki. <https://yuzu-emu.org/wiki/overview-of-switch-game-formats/>"},
       "keys": { "reply": "Most games require encryption keys to boot. You can dump them from your Switch by following this guide. <https://yuzu-emu.org/help/quickstart/#keys>"},
-      "game-updates": { "reply": "Installing and using game updates are a seperate process from the base game. Check out our updates tutorial on our wiki. <https://yuzu-emu.org/wiki/how-to-install-and-use-game-updates/>"},
+      "game-updates": { "reply": "Installing and using game updates are a separate process from the base game. Check out our updates tutorial on our wiki. <https://yuzu-emu.org/wiki/how-to-install-and-use-game-updates/>"},
       "log": { "reply": "This forum topic tells you how to __get the log file__: <https://community.citra-emu.org/t/how-to-upload-the-log-file/296>"},
       "pikachu": { "reply": "https://cdn.discordapp.com/attachments/512678820092968971/516372335826042901/yote.png"},
       "quickstart": { "reply": "Please reference the __Quickstart Guide__ in order to dump your games, keys, and system files for use with yuzu. <https://yuzu-emu.org/help/quickstart/>"}
     }
   }
-  
+

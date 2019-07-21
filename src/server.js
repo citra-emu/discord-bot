@@ -34,7 +34,7 @@ function findArray(haystack, arr) {
 }
 
 client.on('ready', () => {
-  // Initalize app channels.
+  // Initialize app channels.
   state.logChannel = client.channels.get(process.env.DISCORD_LOG_CHANNEL);
   state.guild = state.logChannel.guild;
 
@@ -140,7 +140,7 @@ client.on('message', message => {
       try {
         // Check if the command requires a warning.
         if (cmd !== 'warn' && cachedModule.warn === true) {
-          // Access check to see if the user has privilages to warn.
+          // Access check to see if the user has privileges to warn.
           let warnCommand = cachedModules['warn.js'];
           if (findArray(message.member.roles.map(function (x) { return x.name; }), warnCommand.roles)) {
             // They are allowed to warn because they are in warn's roles.
