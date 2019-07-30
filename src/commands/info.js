@@ -15,8 +15,8 @@ exports.command = function (message) {
     let warns = state.warnings.filter(x => x.id == user.id)
     let bans = state.bans.filter(x => x.id == user.id)
 
-    const warnsString = `Warns:\`\`\`${formatWarnings(warns).join('\n')}\`\`\``
-    const bansString = `Bans:\`\`\`${formatBans(bans).join('\n')}\`\`\``
+    const warnsString = `Warns: \`\`\`${formatWarnings(warns).join('\n')}\`\`\``
+    const bansString = `Bans: \`\`\`${formatBans(bans).join('\n')}\`\`\``
 
     message.channel.send(`\`${user.username} (${totalWarnings}) information:\`${warns.length != 0 ? warnsString : ''}${bans.length != 0 ? bansString : ''}`)
   });
