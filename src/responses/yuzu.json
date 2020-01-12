@@ -23,7 +23,16 @@
       "pikachu": { "reply": "https://cdn.discordapp.com/attachments/512678820092968971/516372335826042901/yote.png"},
       "quickstart": { "reply": "Please reference the __Quickstart Guide__ in order to dump your games, keys, and system files for use with yuzu. <https://yuzu-emu.org/help/quickstart/>"},
       "shaders": { "reply": "Shader caches store parts of the game when compiling, we don't allow sharing or downloading these, since it is considered piracy."},
-      "leaks": { "reply": "The discussion of leaks is not allowed. Talking about the game and its mechanics is fine, talking about the leak and playability is not."}
+      "leaks": { "reply": "The discussion of leaks is not allowed. Talking about the game and its mechanics is fine, talking about the leak and playability is not."},
+      "r1": { "reply": ":beginner: **Rule #1:** \nStay courteous and respectful to others."},
+      "r2": { "reply": ":beginner: **Rule #2:** \nPiracy is prohibited — Talking about warez/downloading games is prohibited. This includes asking for system files, ROMs, encryption keys, shader caches, and discussion of leaked games etc."},
+      "r3": { "reply": ":beginner: **Rule #3:** \nDiscussion of leaked games is strictly prohibited — No discussion of leaked games is allowed, unless referring to the content of the game. This should only be discussed with spoiler tags."},
+      "r4": { "reply": ":beginner: **Rule #4:** \nDo not link or discuss unofficial builds — yuzu does not provide support for unofficial builds. They may introduce new bugs, contain GPL violations, or may even contain a virus."},
+      "r5": { "reply": ":beginner: **Rule #5:** \nPatreon build support is only provided for Patrons — Patreon build support must be conducted in the patreon exclusive channels, and users should not provide support for leaked builds."},
+      "r6": { "reply": ":beginner: **Rule #6:** \nNo Religious or Political discussions."},
+      "r7": { "reply": ":beginner: **Rule #7:** \nNo advertising of any kind, unless permission is granted. — Exceptions being texture packs / game mods that relate to yuzu, but these are handled on a case-by-case basis."},
+      "r8": { "reply": ":beginner: **Rule #8:** \nIn case of no written rule — the discretion of moderators shall take precedence."},
+      "r9": { "reply": ":beginner: **Rule #9:** \nTrying to evade or circumvent any of the above rules will be considered as breaking them. Doing so will result in warnings, and eventually a ban."}
     }
   }
 
