@@ -22,7 +22,14 @@
       "cheats": { "reply": "Looking to add cheats to Citra? Drop a .txt file with the Title ID of the game you're playing into the Cheats folder. You can find it by clicking 'File -> Open Citra Folder'. \nCheats are stored in the gateway format. A sample collection of cheats are located at <https://github.com/JourneyOver/CTRPF-AR-CHEAT-CODES/tree/master/Cheats/> "},
       "keys": { "reply": "Users need to provide encryption keys to use encrypted ROMs on Citra. Please follow the provided instructions below to obtain the keys from your 3DS. <https://citra-emu.org/wiki/aes-keys/>"},
       "lenny": { "reply": "( ͡° ͜ʖ ͡°)"},
-      "( ͡° ͜ʖ ͡°)": { "reply": "lenny"}
+      "( ͡° ͜ʖ ͡°)": { "reply": "lenny"},
+      "r1": { "reply": ":beginner: **Rule #1:** \nStay courteous and respectful to others."},
+      "r2": { "reply": ":beginner: **Rule #2:** \nPiracy is prohibited — Talking about warez/downloading games is prohibited.  This includes asking for system files, ROMs, encryption keys, etc."},
+      "r3": { "reply": ":beginner: **Rule #3:** \nDo not link or discuss unofficial builds — Citra does not provide support for unofficial builds. They may introduce new bugs, contain GPL violations, or may even contain a virus."},
+      "r4": { "reply": ":beginner: **Rule #4:** \nNo Religious or Political discussions."},
+      "r5": { "reply": ":beginner: **Rule #5:** \nNo advertising of any kind, unless permission is granted. — Exceptions being texture packs / game mods that relate to Citra, but these are handled on a case-by-case basis."},
+      "r6": { "reply": ":beginner: **Rule #6:** \nIn case of no written rule — the discretion of moderators shall take precedence."},
+      "r7": { "reply": ":beginner: **Rule #7:** \nTrying to evade or circumvent any of the above rules will be considered as breaking them. Doing so will result in warnings, and eventually a ban."}
     }
   }
   
