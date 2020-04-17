@@ -3,7 +3,7 @@
     "quotes": {
       "help": { "reply": "Need help? Refer to our **asking for help** guide. <https://yuzu-emu.org/help/reference/asking/>" },
       "ea": { "reply": "yuzu Early Access requires an active forum account and the linking of your Patreon account to it. Please refer to this guide for more details: <https://yuzu-emu.org/help/early-access/>" },
-      "faq": { "reply": "Please refer to our **Frequently Asked Questions**. <https://yuzu-emu.org/wiki/faq/>" },
+      "faq": { "reply": "For information on your issue, please refer to our **Frequently Asked Questions**. <https://yuzu-emu.org/wiki/faq/>" },
       "cpu": { "reply": "yuzu requires powerful single-core performance. Please refer to our **Hardware Requirements** for recommended hardware: <https://yuzu-emu.org/help/quickstart/#hardware>"},
       "roms": { "reply": "Please read our __community rules__. Warez/downloading games talk is strictly prohibited. To prevent legal issues, you are not allowed to post links or refer to any kind of ROM, NAND, ISO, game, or other copyrighted material that has been illegally obtained or shared. <https://yuzu-emu.org/rules/>"},
       "dump-cart": { "reply": "Please refer to our __cartridge dumping guide__. <https://yuzu-emu.org/help/quickstart/#cart>"},
