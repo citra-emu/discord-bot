@@ -49,3 +49,5 @@ config/development.json
 .vs/
 .vscode/
 CMakeLists.txt.user*
+
+/dist

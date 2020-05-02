@@ -1,35 +1,36 @@
-const winston = require('winston');
-const ip = require('ip');
-const os = require('os');
+import winston = require('winston');
+import * as ip from 'ip';
+import * as os from 'os';
 
-winston.emitErrs = true;
-
-const logger = new winston.Logger({
+const logger = winston.createLogger({
   level: 'debug',
   transports: [
-    new (winston.transports.Console)()
+    new (winston.transports.Console)({
+      format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.simple()
+      ),
+      handleExceptions: true
+    })
   ],
-  handleExceptions: true,
-  humanReadableUnhandledException: true,
   exitOnError: false,
-  meta: true
 });
 
 // Setup logging for LogDNA cloud logging.
 if (process.env.LOGDNA_API_KEY) {
-  require('logdna');
+  const logdnaWinston = require('logdna-winston');
   const logLevel = process.env.LOGDNA_LEVEL || 'info';
 
-  logger.add(winston.transports.Logdna, {
+  logger.add(new logdnaWinston({
     level: logLevel,
     app: process.env.LOGDNA_APPNAME,
     index_meta: true,
     key: process.env.LOGDNA_API_KEY,
     ip: ip.address(),
     hostname: os.hostname()
-  });
+  }));
 
   logger.info(`[core] Started LogDNA winston transport. Running at log level ${logLevel}.`);
 }
 
-module.exports = logger;
+export default logger;

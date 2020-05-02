@@ -1,10 +1,11 @@
-const state = require('../state.js');
-const data = require('../data.js');
-const logger = require('../logging.js');
-const UserBan = require('../models/UserBan.js');
+import state from '../state';
+import * as data from '../data';
+import logger from '../logging';
+import UserBan from '../models/UserBan';
+import discord = require('discord.js');
 
-exports.roles = ['Admins', 'Moderators', 'CitraBot'];
-exports.command = function (message) {
+export const roles = ['Admins', 'Moderators', 'CitraBot'];
+export function command (message: discord.Message) {
   message.mentions.users.map((user) => {
     const count = state.warnings.filter(x => x.id === user.id && !x.cleared).length || 0;
 

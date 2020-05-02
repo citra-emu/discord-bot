@@ -10,17 +10,17 @@ Invite Bot to your Server (see **Creating a Bot User** below).
 Make bot a Moderator.
 
 # Install & Dependencies
-Install Node.js and NPM.
+Install Node.js and Yarn.
 
 Install forever (task scheduler).
 ```sh
-npm install -g forever
+yarn global add forever
 ```
 Clone repository and install package dependencies.
 ```sh
 git clone https://github.com/citra-emu/discord-bot.git
 cd discord-bot
-npm install
+yarn
 ```
 Create new JSON file for bot config with the following contents in the directory specified below:
 
@@ -48,11 +48,13 @@ Copy App Bot User token to `"clientLoginToken": ""`
 
 ##### For Production
 
+First yo need to build the project by running `yarn build`.
+
 `./start.sh` Requires a config/production.json file.
 
 ##### For Development
 
-`node server.js`   Requires a config/development.json file.
+`yarn serve`   Requires a config/development.json file.
 
 # License
 GNU General Public License v2.0

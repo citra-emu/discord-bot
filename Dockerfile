@@ -3,12 +3,20 @@ FROM mhart/alpine-node:latest
 # Create app directory
 WORKDIR /usr/src/app
 
-# Install app dependencies
-COPY package.json ./
-RUN yarn install
+# Install app dependencies and add source files
+COPY package.json yarn.lock tsconfig.json ./
+COPY src/ ./src 
+RUN yarn install && yarn build && rm -f dist/*.map
 
-# Bundle app source
-COPY . .
+# Second stage
+FROM mhart/alpine-node:latest
+
+WORKDIR /usr/src/app
+
+# Copy artifacts
+COPY --from=0 /usr/src/app/dist/ ./
+COPY --from=0 /usr/src/app/node_modules ./node_modules
+COPY env.json ./
 
 RUN addgroup -S app -g 50000 && \
     adduser -S -g app -u 50000 app && \
@@ -16,4 +24,4 @@ RUN addgroup -S app -g 50000 && \
 
 USER app
 
-ENTRYPOINT [ "node", "src/server.js" ]
+ENTRYPOINT [ "node", "server.js" ]

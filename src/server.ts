@@ -1,50 +1,48 @@
 // Check for environmental variables.
 require('checkenv').check();
 
-const discord = require('discord.js');
-const path = require('path');
-const schedule = require('node-schedule');
-const fs = require('fs');
+import discord = require('discord.js');
+import path = require('path');
+// const schedule = require('node-schedule');
+import fs = require('fs');
 
-const logger = require('./logging.js');
-const state = require('./state.js');
-const data = require('./data.js');
+import logger from './logging';
+import state from './state';
+import * as data from './data';
 
 state.responses = require('./responses.json');
 
-let cachedModules = [];
-let cachedTriggers = [];
+interface IModuleMap {
+  [name: string]: any;
+}
+
+let cachedModules: IModuleMap = {};
+let cachedTriggers: any[] = [];
 const client = new discord.Client();
 
-let mediaUsers = new Map();
+const mediaUsers = new Map();
 
 logger.info('Application startup. Configuring environment.');
 
-process.on('unhandledRejection', (error, promise) => {
-  logger.error(`Unhandled promise rejection: ${error.message}.`, { meta: error });
-});
-
-process.on('uncaughtException', error => {
-  logger.error(`Unhandled exception: ${error.message}.`, { meta: error });
-  process.exit(-1);
-});
-
-function findArray (haystack, arr) {
-  return arr.some(function (v) {
+function findArray(haystack: string | any[], arr: any[]) {
+  return arr.some(function (v: any) {
     return haystack.indexOf(v) >= 0;
   });
 }
 
-function IsIgnoredCategory (categoryName) {
+function IsIgnoredCategory(categoryName: string) {
   const IgnoredCategory = ['welcome', 'team', 'website-team'];
   return IgnoredCategory.includes(categoryName);
 }
 
-client.on('ready', () => {
+client.on('ready', async () => {
   // Initialize app channels.
-  state.logChannel = client.channels.get(process.env.DISCORD_LOG_CHANNEL);
-  state.msglogChannel = client.channels.get(process.env.DISCORD_MSGLOG_CHANNEL);
-  state.guild = state.logChannel.guild;
+  let logChannel = await client.channels.fetch(process.env.DISCORD_LOG_CHANNEL) as discord.TextChannel;
+  let msglogChannel = await client.channels.fetch(process.env.DISCORD_MSGLOG_CHANNEL) as discord.TextChannel;
+  if (!logChannel.send) throw new Error('DISCORD_LOG_CHANNEL is not a text channel!');
+  if (!msglogChannel.send) throw new Error('DISCORD_MSGLOG_CHANNEL is not a text channel!');
+  state.logChannel = logChannel;
+  state.msglogChannel = msglogChannel;
 
   logger.info('Bot is now online and connected to server.');
 });
@@ -63,19 +61,17 @@ client.on('debug', (x) => null);
 client.on('disconnect', () => {
   logger.warn('Disconnected from Discord server.');
 });
-client.on('reconnecting', () => {
-  logger.warn('Reconnecting...');
-});
 
 client.on('guildMemberAdd', (member) => {
-  member.addRole(process.env.DISCORD_RULES_ROLE);
+  member.roles.add(process.env.DISCORD_RULES_ROLE);
 });
 
 client.on('messageDelete', message => {
-  if (IsIgnoredCategory(message.channel.parent.name) == false) {
-    if (message.content && message.content.startsWith('.') == false && message.author.bot == false) {
-      const deletionEmbed = new discord.RichEmbed()
-        .setAuthor(message.author.tag, message.author.displayAvatarURL)
+  let parent = (message.channel as discord.TextChannel).parent;
+  if (parent && IsIgnoredCategory(parent.name) === false) {
+    if (message.content && message.content.startsWith('.') === false && message.author.bot === false) {
+      const deletionEmbed = new discord.MessageEmbed()
+        .setAuthor(message.author.tag, message.author.displayAvatarURL())
         .setDescription(`Message deleted in ${message.channel}`)
         .addField('Content', message.cleanContent, false)
         .setTimestamp()
@@ -89,13 +85,14 @@ client.on('messageDelete', message => {
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
   const AllowedRoles = ['Administrators', 'Moderators', 'Team', 'VIP'];
-  if (!findArray(oldMessage.member.roles.map(function (x) { return x.name; }), AllowedRoles)) {
-    if (IsIgnoredCategory(oldMessage.channel.parent.name) == false) {
+  if (!findArray(oldMessage.member.roles.cache.map(x => x.name), AllowedRoles)) {
+    let parent = (oldMessage.channel as discord.TextChannel).parent;
+    if (parent && IsIgnoredCategory(parent.name) === false) {
       const oldM = oldMessage.cleanContent;
       const newM = newMessage.cleanContent;
-      if (oldMessage.content != newMessage.content && oldM && newM) {
-        const editedEmbed = new discord.RichEmbed()
-          .setAuthor(oldMessage.author.tag, oldMessage.author.displayAvatarURL)
+      if (oldMessage.content !== newMessage.content && oldM && newM) {
+        const editedEmbed = new discord.MessageEmbed()
+          .setAuthor(oldMessage.author.tag, oldMessage.author.displayAvatarURL())
           .setDescription(`Message edited in ${oldMessage.channel} [Jump To Message](${newMessage.url})`)
           .addField('Before', oldM, false)
           .addField('After', newM, false)
@@ -120,11 +117,11 @@ client.on('message', message => {
     return;
   }
 
-  logger.verbose(`${message.author.username} ${message.author} [Channel: ${message.channel.name} ${message.channel}]: ${message.content}`);
+  logger.verbose(`${message.author.username} ${message.author} [Channel: ${(message.channel as discord.TextChannel).name} ${message.channel}]: ${message.content}`);
 
   if (message.channel.id === process.env.DISCORD_MEDIA_CHANNEL && !message.author.bot) {
     const AllowedMediaRoles = ['Administrators', 'Moderators', 'Team', 'VIP'];
-    if (!findArray(message.member.roles.map(function (x) { return x.name; }), AllowedMediaRoles)) {
+    if (!findArray(message.member.roles.cache.map(x => x.name), AllowedMediaRoles)) {
       const urlRegex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/gi);
       if (message.attachments.size > 0 || message.content.match(urlRegex)) {
         mediaUsers.set(message.author.id, true);
@@ -142,15 +139,14 @@ client.on('message', message => {
     if (message.content.toLowerCase().includes(process.env.DISCORD_RULES_TRIGGER)) {
       // We want to remove the 'Unauthorized' role from them once they agree to the rules.
       logger.verbose(`${message.author.username} ${message.author} has accepted the rules, removing role ${process.env.DISCORD_RULES_ROLE}.`);
-      message.member.removeRole(process.env.DISCORD_RULES_ROLE, 'Accepted the rules.');
+      message.member.roles.remove(process.env.DISCORD_RULES_ROLE, 'Accepted the rules.');
     }
 
     // Delete the message in the channel to force a cleanup.
     message.delete();
-    return;
   } else if (message.content.startsWith('.') && message.content.startsWith('..') === false) {
     // We want to make sure it's an actual command, not someone '...'-ing.
-    let cmd = message.content.split(' ')[0].slice(1);
+    const cmd = message.content.split(' ', 1)[0].slice(1);
 
     // Check by the name of the command.
     let cachedModule = cachedModules[`${cmd}.js`];
@@ -158,44 +154,43 @@ client.on('message', message => {
     // Check by the quotes in the configuration.
     if (cachedModule == null) { cachedModule = state.responses.quotes[cmd]; cachedModuleType = 'Quote'; }
 
-    if (cachedModule) {
-      // Check access permissions.
-      if (cachedModule.roles !== undefined && findArray(message.member.roles.map(function (x) { return x.name; }), cachedModule.roles) === false) {
-        state.logChannel.send(`${message.author} attempted to use admin command: ${message.content}`);
-        logger.info(`${message.author.username} ${message.author} attempted to use admin command: ${message.content}`);
-        return false;
-      }
+    if (!cachedModule) return; // Not a valid command.
 
-      logger.info(`${message.author.username} ${message.author} [Channel: ${message.channel}] executed command: ${message.content}`);
-      message.delete();
-
-      try {
-        if (cachedModuleType === 'Command') {
-          cachedModule.command(message);
-        } else if (cachedModuleType === 'Quote') {
-          cachedModules['quote.js'].command(message, cachedModule.reply);
-        }
-      } catch (err) { logger.error(err); }
-
-      // Warn after running command?
-      try {
-        // Check if the command requires a warning.
-        if (cmd !== 'warn' && cachedModule.warn === true) {
-          // Access check to see if the user has privileges to warn.
-          let warnCommand = cachedModules['warn.js'];
-          if (findArray(message.member.roles.map(function (x) { return x.name; }), warnCommand.roles)) {
-            // They are allowed to warn because they are in warn's roles.
-            warnCommand.command(message);
-          }
-        }
-      } catch (err) { logger.error(err); }
-    } else {
-      // Not a valid command.
+    // Check access permissions.
+    if (cachedModule.roles !== undefined && findArray(message.member.roles.cache.map(x => x.name), cachedModule.roles) === false) {
+      state.logChannel.send(`${message.author} attempted to use admin command: ${message.content}`);
+      logger.info(`${message.author.username} ${message.author} attempted to use admin command: ${message.content}`);
+      return false;
     }
+
+    logger.info(`${message.author.username} ${message.author} [Channel: ${message.channel}] executed command: ${message.content}`);
+    message.delete();
+
+    try {
+      if (cachedModuleType === 'Command') {
+        cachedModule.command(message);
+      } else if (cachedModuleType === 'Quote') {
+        cachedModules['quote.js'].command(message, cachedModule.reply);
+      }
+    } catch (err) { logger.error(err); }
+
+    // Warn after running command?
+    try {
+      // Check if the command requires a warning.
+      if (cmd !== 'warn' && cachedModule.warn === true) {
+        // Access check to see if the user has privileges to warn.
+        const warnCommand = cachedModules['warn.js'];
+        if (findArray(message.member.roles.cache.map(x => x.name), warnCommand.roles)) {
+          // They are allowed to warn because they are in warn's roles.
+          warnCommand.command(message);
+        }
+      }
+    } catch (err) { logger.error(err); }
+
   } else if (message.author.bot === false) {
     // This is a normal channel message.
     cachedTriggers.forEach(function (trigger) {
-      if (trigger.roles === undefined || findArray(message.member.roles.map(function (x) { return x.name; }), trigger.roles)) {
+      if (trigger.roles === undefined || findArray(message.member.roles.cache.map(x => x.name), trigger.roles)) {
         if (trigger.trigger(message) === true) {
           logger.debug(`${message.author.username} ${message.author} [Channel: ${message.channel}] triggered: ${message.content}`);
           try {
@@ -208,8 +203,8 @@ client.on('message', message => {
 });
 
 // Cache all command modules.
-cachedModules = [];
-fs.readdirSync('./src/commands/').forEach(function (file) {
+cachedModules = {};
+fs.readdirSync('./commands/').forEach(function (file) {
   // Load the module if it's a script.
   if (path.extname(file) === '.js') {
     if (file.includes('.disabled')) {
