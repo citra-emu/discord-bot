@@ -13,7 +13,6 @@
       "legal": { "reply": "*yuzu* is legal, we don't support illegal activities. Dumping your purchased games and system files from your Switch is legal. Downloading them is not."},
       "building": { "reply": "Please refer to our building guides.\nWindows: <https://yuzu-emu.org/wiki/building-for-windows> \nLinux: <https://yuzu-emu.org/wiki/building-for-linux>"},
       "contributing": { "reply": "Contributing to the project is the best way to help the project move forward. If you are a developer, please refer to: \nSwitch reference guides: <https://github.com/yuzu-emu/yuzu/wiki/Switch-Hardware-and-Software> \nSwitch homebrew applications for testing: <https://github.com/yuzu-emu/yuzu/wiki/Switch-Homebrew> \nWiki, dedicated to Switch research: <http://switchbrew.org> \nyuzu contributing tips: <https://github.com/yuzu-emu/yuzu/blob/master/CONTRIBUTING.md>"},
-      "canary": { "reply": "The Nightly builds are expected to keep maximum accuracy, and therefore, cannot run many commercial titles at the moment. \nCanary builds contain code that ignores assertions, and makes the games run without having implementations of service commands, GPU shaders, etc. In addition to that, Canary might also have features or fixes that have not yet been merged into Nightly."},
       "lenny": { "reply": "( ͡° ͜ʖ ͡°)"},
       "( ͡° ͜ʖ ͡°)": { "reply": "lenny"},
       "format": { "reply": "A full description of game formats the yuzu supports and when to use them can be found on our wiki. <https://yuzu-emu.org/wiki/overview-of-switch-game-formats/>"},
