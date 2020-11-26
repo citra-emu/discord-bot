@@ -28,8 +28,9 @@
       "r3": { "reply": ":beginner: **Rule #3:** \nDo not link or discuss unofficial builds — Citra does not provide support for unofficial builds. They may introduce new bugs, contain GPL violations, or may even contain a virus."},
       "r4": { "reply": ":beginner: **Rule #4:** \nNo Religious or Political discussions."},
       "r5": { "reply": ":beginner: **Rule #5:** \nNo advertising of any kind, unless permission is granted. — Exceptions being texture packs / game mods that relate to Citra, but these are handled on a case-by-case basis."},
-      "r6": { "reply": ":beginner: **Rule #6:** \nIn case of no written rule — the discretion of moderators shall take precedence."},
-      "r7": { "reply": ":beginner: **Rule #7:** \nTrying to evade or circumvent any of the above rules will be considered as breaking them. Doing so will result in warnings, and eventually a ban."}
+      "r6": { "reply": ":beginner: **Rule #6:** \nEnglish Only — This is an English only server. If you don't speak English well, please use a translation service such as <https://www.deepl.com/en/translator>."},
+      "r7": { "reply": ":beginner: **Rule #7:** \nIn case of no written rule — the discretion of moderators shall take precedence."},
+      "r8": { "reply": ":beginner: **Rule #8:** \nTrying to evade or circumvent any of the above rules will be considered as breaking them. Doing so will result in warnings, and eventually a ban."}
     }
   }
   
