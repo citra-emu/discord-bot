@@ -39,7 +39,7 @@ function findArray(haystack: string | any[], arr: any[]) {
 }
 
 function IsIgnoredCategory(categoryName: string) {
-  const IgnoredCategory = ['welcome', 'team', 'website-team'];
+  const IgnoredCategory = ['internal-development', 'internal-general', 'internal-casual', 'website'];
   return IgnoredCategory.includes(categoryName);
 }
 
