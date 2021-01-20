@@ -48,7 +48,7 @@ Copy App Bot User token to `"clientLoginToken": ""`
 
 ##### For Production
 
-First yo need to build the project by running `yarn build`.
+First you need to build the project by running `yarn build`.
 
 `./start.sh` Requires a config/production.json file.
 
@@ -60,14 +60,14 @@ First yo need to build the project by running `yarn build`.
 GNU General Public License v2.0
 
 ## Creating a Bot User.
-First you need to go to [discord developers](https://discordapp.com/developers/applications/me) and click "New Application"
+First you need to go to [discord developers portal](https://discordapp.com/developers/applications/me) and click "New Application"
 ![Application Screen](http://i.imgur.com/FvgfY2Z.png)
 Now give your bot a name and a picture, a description isn't necessary.
 ![New Application Screen](http://i.imgur.com/MOS7yvH.png)
 Click "Create Application". On the next page scroll down until you see "Create a bot user", click that. Also click yes do it.
 ![Screen you see after creating a new application then scrolling down a little.](http://i.imgur.com/YAzK5ml.png)
 ![Yes Do It.](http://i.imgur.com/vkF6Rxo.png)
-Now you can get your bot's token, by using the "click to reveal button" in the app bot user section. Remember to uncheck `Public Bot`
+Now you can get your bot's token, by using the "click to reveal" button in the app bot user section. Remember to uncheck `Public Bot`
 ![New Bot Page](http://i.imgur.com/xhKMUVU.png)
 ![Token](http://i.imgur.com/QwCmJJM.png)
 There's your token! Now its time to invite your bot to your server. Don't worry about your bot being started for this next step. Change the `client_id` in the URL to your Client ID under App Details, then go to this url ```https://discordapp.com/oauth2/authorize?&client_id=YOUR_CLIENT_ID_HERE&scope=bot&permissions=0```
