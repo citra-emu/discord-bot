@@ -6,7 +6,7 @@ const fetchOptions = {
 };
 const repo = process.env.GITHUB_REPOSITORY || 'citra-emu/citra';
 
-export const roles = ['Admins', 'Moderators', 'Developers'];
+export const roles = ['Admins', 'Moderators', 'Developer'];
 export function command(message: discord.Message) {
   const pr_number = message.content.substr(message.content.indexOf(' ') + 1).replace(/\n/g, '');
   const url = `https://api.github.com/repos/${repo}/pulls/${pr_number}`;
