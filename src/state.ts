@@ -7,6 +7,7 @@ import discord = require('discord.js');
 class State {
   logChannel: discord.TextChannel | discord.DMChannel;
   msglogChannel: discord.TextChannel | discord.DMChannel;
+  userlogChannel: discord.TextChannel | discord.DMChannel;
   warnings: UserWarning[];
   responses: IResponses;
   bans: UserBan[];
@@ -18,6 +19,7 @@ class State {
   constructor () {
     this.logChannel;
     this.msglogChannel;
+    this.userlogChannel;
     this.warnings = [];
     this.responses;
     this.bans = [];

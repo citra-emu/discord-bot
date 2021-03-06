@@ -45,15 +45,18 @@ function IsIgnoredCategory(categoryName: string) {
 
 client.on('ready', async () => {
   // Initialize app channels.
-  if (!process.env.DISCORD_LOG_CHANNEL || !process.env.DISCORD_MSGLOG_CHANNEL) {
-    throw new Error('DISCORD_LOG_CHANNEL or DISCORD_MSGLOG_CHANNEL not defined.');
+  if (!process.env.DISCORD_LOG_CHANNEL || !process.env.DISCORD_MSGLOG_CHANNEL || !process.env.DISCORD_USERLOG_CHANNEL) {
+    throw new Error('DISCORD_LOG_CHANNEL or DISCORD_MSGLOG_CHANNEL or DISCORD_USERLOG_CHANNEL not defined.');
   }
   let logChannel = await client.channels.fetch(process.env.DISCORD_LOG_CHANNEL) as discord.TextChannel;
   let msglogChannel = await client.channels.fetch(process.env.DISCORD_MSGLOG_CHANNEL) as discord.TextChannel;
+  let userlogChannel = await client.channels.fetch(process.env.DISCORD_USERLOG_CHANNEL) as discord.TextChannel;
   if (!logChannel.send) throw new Error('DISCORD_LOG_CHANNEL is not a text channel!');
   if (!msglogChannel.send) throw new Error('DISCORD_MSGLOG_CHANNEL is not a text channel!');
+  if (!userlogChannel.send) throw new Error('DISCORD_USERLOG_CHANNEL is not a text channel!');
   state.logChannel = logChannel;
   state.msglogChannel = msglogChannel;
+  state.userlogChannel = userlogChannel;
 
   logger.info('Bot is now online and connected to server.');
 });
@@ -162,6 +165,7 @@ client.on('message', message => {
     if (message.content.toLowerCase().includes(rulesTrigger)) {
       // We want to remove the 'Unauthorized' role from them once they agree to the rules.
       logger.verbose(`${message.author.username} ${message.author} has accepted the rules, removing role ${process.env.DISCORD_RULES_ROLE}.`);
+      state.userlogChannel.send(`${message.author.toString()} has accepted the rules, their ID is ${message.author}`);
       message.member?.roles.remove(rluesRole, 'Accepted the rules.');
     }
 
