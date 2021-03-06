@@ -16,7 +16,7 @@ exports.command = function (message: discord.Message) {
     }
 
     logger.info(`${message.author.username} ${message.author} has warned ${user.username} ${user} [${count} + 1].`);
-    state.logChannel.send(`${message.author.toString()} has warned ${user.toString()} [${count} + 1].`);
+    state.logChannel.send(`${message.author.toString()} has warned ${user.toString()} (${user.username}) [${user}] [${count} + 1].`);
 
     state.warnings.push(new UserWarning(user.id, user.username, message.author.id, message.author.username, count, silent));
     data.flushWarnings();
