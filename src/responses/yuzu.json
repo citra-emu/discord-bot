@@ -11,6 +11,7 @@
       "updates": { "reply": "You can check our latest updates on *Github*. <https://github.com/yuzu-emu/yuzu/pulse>"},
       "download": { "reply": "Please only download from the official *yuzu* website, as downloading from other sources is not supported here. <https://yuzu-emu.org/downloads/>"},
       "legal": { "reply": "*yuzu* is legal, we don't support illegal activities. Dumping your purchased games and system files from your Switch is legal. Downloading them is not."},
+      "games": { "reply": "Get the games on your Switch's eShop or here: <https://www.nintendo.com/games/>" },
       "building": { "reply": "Please refer to our building guides.\nWindows: <https://yuzu-emu.org/wiki/building-for-windows> \nLinux: <https://yuzu-emu.org/wiki/building-for-linux>"},
       "contributing": { "reply": "Contributing to the project is the best way to help the project move forward. If you are a developer, please refer to: \nSwitch reference guides: <https://github.com/yuzu-emu/yuzu/wiki/Switch-Hardware-and-Software> \nSwitch homebrew applications for testing: <https://github.com/yuzu-emu/yuzu/wiki/Switch-Homebrew> \nWiki, dedicated to Switch research: <http://switchbrew.org> \nyuzu contributing tips: <https://github.com/yuzu-emu/yuzu/blob/master/CONTRIBUTING.md>"},
       "lenny": { "reply": "( ͡° ͜ʖ ͡°)"},
