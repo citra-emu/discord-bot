@@ -89,9 +89,9 @@ client.on('messageDelete', message => {
         .setTimestamp()
         .setColor('RED');
       
-      let userInfo = `${message.author.toString()} (${message.author?.username}) (${message.author})`
+      let userInfo = `${message.author?.toString()} (${message.author?.username}) (${message.author})`
 
-      state.msglogChannel.send(content=userInfo, embed=deletionEmbed);
+      state.msglogChannel.send(userInfo, { embed: deletionEmbed });
       logger.info(`${message.author?.username} ${message.author} deleted message: ${message.cleanContent}.`);
     }
   }
@@ -118,9 +118,9 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
           .setTimestamp()
           .setColor('GREEN');
         
-        let userInfo = `${oldMessage.author.toString()} (${oldMessage.author?.username}) (${oldMessage.author})`
+        let userInfo = `${oldMessage.author?.toString()} (${oldMessage.author?.username}) (${oldMessage.author})`
 
-        state.msglogChannel.send(content=userInfo, embed=editedEmbed);
+        state.msglogChannel.send(userInfo, { embed: editedEmbed });
         logger.info(`${oldMessage.author?.username} ${oldMessage.author} edited message from: ${oldM} to: ${newM}.`);
       }
     }
