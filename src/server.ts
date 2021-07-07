@@ -79,24 +79,32 @@ client.on('guildMemberAdd', (member) => {
 });
 
 client.on('messageDelete', message => {
-  let parent = (message.channel as discord.TextChannel).parent;
-  if (parent && IsIgnoredCategory(parent.name) === false) {
-    if (((message.content && message.content.startsWith('.') === false) || (message.attachments.array().length > 0)) && message.author?.bot === false) {
-      let messageAttachment = message.attachments.array()[0]?.proxyURL
+  const AllowedRoles = ['Administrators', 'Moderators', 'Team', 'Developer', 'Support', 'VIP'];
+  let authorRoles = oldMessage.member?.roles?.cache?.map(x => x.name);
+  if (!authorRoles) {
+    logger.error(`Unable to get the roles for ${oldMessage.author}`);
+    return;
+  }
+  if (!findArray(authorRoles, AllowedRoles)) {
+    let parent = (message.channel as discord.TextChannel).parent;
+    if (parent && IsIgnoredCategory(parent.name) === false) {
+      if (((message.content && message.content.startsWith('.') === false) || (message.attachments.array().length > 0)) && message.author?.bot === false) {
+        let messageAttachment = message.attachments.array()[0]?.proxyURL
 
-      const deletionEmbed = new discord.MessageEmbed()
-        .setAuthor(message.author?.tag, message.author?.displayAvatarURL())
-        .setDescription(`Message deleted in ${message.channel.toString()}`)
-        .addField('Content', message.cleanContent || '<no content>', false)
-        .setTimestamp()
-        .setColor('RED');
+        const deletionEmbed = new discord.MessageEmbed()
+          .setAuthor(message.author?.tag, message.author?.displayAvatarURL())
+          .setDescription(`Message deleted in ${message.channel.toString()}`)
+          .addField('Content', message.cleanContent || '<no content>', false)
+          .setTimestamp()
+          .setColor('RED');
       
-      if (messageAttachment) deletionEmbed.setImage(messageAttachment)
+        if (messageAttachment) deletionEmbed.setImage(messageAttachment)
 
-      let userInfo = `${message.author?.toString()} (${message.author?.username}) (${message.author})`
+        let userInfo = `${message.author?.toString()} (${message.author?.username}) (${message.author})`
 
-      state.msglogChannel.send(userInfo, { embed: deletionEmbed });
-      logger.info(`${message.author?.username} ${message.author} deleted message: ${message.cleanContent}.`);
+        state.msglogChannel.send(userInfo, { embed: deletionEmbed });
+        logger.info(`${message.author?.username} ${message.author} deleted message: ${message.cleanContent}.`);
+      }
     }
   }
 });
