@@ -102,7 +102,7 @@ client.on('messageDelete', message => {
 });
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
-  const AllowedRoles = ['Administrators', 'Moderators', 'Developer', 'Support', 'VIP'];
+  const AllowedRoles = ['Administrators', 'Moderators', 'Team', 'Developer', 'Support', 'VIP'];
   let authorRoles = oldMessage.member?.roles?.cache?.map(x => x.name);
   if (!authorRoles) {
     logger.error(`Unable to get the roles for ${oldMessage.author}`);
