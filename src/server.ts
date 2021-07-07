@@ -39,7 +39,7 @@ function findArray(haystack: string | any[], arr: any[]) {
 }
 
 function IsIgnoredCategory(categoryName: string) {
-  const IgnoredCategory = ['internal-development', 'internal-general', 'internal-casual', 'website'];
+  const IgnoredCategory = ['internal', 'team', 'development'];
   return IgnoredCategory.includes(categoryName);
 }
 
@@ -102,7 +102,7 @@ client.on('messageDelete', message => {
 });
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
-  const AllowedRoles = ['Administrators', 'Moderators', 'Team', 'VIP'];
+  const AllowedRoles = ['Administrators', 'Moderators', 'Developer', 'Support', 'VIP'];
   let authorRoles = oldMessage.member?.roles?.cache?.map(x => x.name);
   if (!authorRoles) {
     logger.error(`Unable to get the roles for ${oldMessage.author}`);
